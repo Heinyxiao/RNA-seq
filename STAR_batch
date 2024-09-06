@@ -1,0 +1,152 @@
+#!/bin/bash
+#SBATCH -J STAR
+#SBATCH -p general
+#SBATCH -e CREB1_STAR_%j.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=xuexiao@iu.edu
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --mem=250gb
+#SBATCH --time=20:00:00
+
+export PATH="/N/slate/xuexiao/velocyto/velocyto/bin:$PATH"
+
+module unload python
+module load python
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+source activate velocyto
+
+cd /N/slate/xuexiao/cJun_CREB1_ChIP/Align
+export PATH=$PATH:/N/slate/xuexiao/STAR/STAR-2.7.7a/source/
+
+STAR --runThreadN 6 --runMode alignReads --genomeDir /N/slate/xuexiao/Genome/GRCh38/STAR_index \
+--readFilesIn /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_scr_1_S1_R1_trim_paired.fastq /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_scr_1_S1_R2_trim_paired.fastq \
+--twopassMode Basic \
+--outSAMtype BAM SortedByCoordinate \
+--quantMode GeneCounts \
+--outFilterMultimapNmax 20 \
+--outFilterMismatchNmax 999 \
+--outFilterMismatchNoverReadLmax 0.04 \
+--alignIntronMin 20 \
+--alignIntronMax 1000000 \
+--alignMatesGapMax 1000000 \
+--outFilterType BySJout \
+--alignSJoverhangMin 8 \
+--alignSJDBoverhangMin 1 \
+--outFileNamePrefix OV3_scr_1_S1_new_
+
+STAR --runThreadN 6 --runMode alignReads --genomeDir /N/slate/xuexiao/Genome/GRCh38/STAR_index \
+--readFilesIn /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_scr_2_S2_R1_trim_paired.fastq /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_scr_2_S2_R2_trim_paired.fastq \
+--twopassMode Basic \
+--outSAMtype BAM SortedByCoordinate \
+--quantMode GeneCounts \
+--outFilterMultimapNmax 20 \
+--outFilterMismatchNmax 999 \
+--outFilterMismatchNoverReadLmax 0.04 \
+--alignIntronMin 20 \
+--alignIntronMax 1000000 \
+--alignMatesGapMax 1000000 \
+--outFilterType BySJout \
+--alignSJoverhangMin 8 \
+--alignSJDBoverhangMin 1 \
+--outFileNamePrefix OV3_scr_2_S2_new_
+
+STAR --runThreadN 6 --runMode alignReads --genomeDir /N/slate/xuexiao/Genome/GRCh38/STAR_index \
+--readFilesIn /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_scr_3_S3_R1_trim_paired.fastq /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_scr_3_S3_R2_trim_paired.fastq \
+--twopassMode Basic \
+--outSAMtype BAM SortedByCoordinate \
+--quantMode GeneCounts \
+--outFilterMultimapNmax 20 \
+--outFilterMismatchNmax 999 \
+--outFilterMismatchNoverReadLmax 0.04 \
+--alignIntronMin 20 \
+--alignIntronMax 1000000 \
+--alignMatesGapMax 1000000 \
+--outFilterType BySJout \
+--alignSJoverhangMin 8 \
+--alignSJDBoverhangMin 1 \
+--outFileNamePrefix OV3_scr_3_S3_new_
+
+
+STAR --runThreadN 6 --runMode alignReads --genomeDir /N/slate/xuexiao/Genome/GRCh38/STAR_index \
+--readFilesIn /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_CREB1KD_1_S4_R1_trim_paired.fastq /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_CREB1KD_1_S4_R2_trim_paired.fastq \
+--twopassMode Basic \
+--outSAMtype BAM SortedByCoordinate \
+--quantMode GeneCounts \
+--outFilterMultimapNmax 20 \
+--outFilterMismatchNmax 999 \
+--outFilterMismatchNoverReadLmax 0.04 \
+--alignIntronMin 20 \
+--alignIntronMax 1000000 \
+--alignMatesGapMax 1000000 \
+--outFilterType BySJout \
+--alignSJoverhangMin 8 \
+--alignSJDBoverhangMin 1 \
+--outFileNamePrefix OV3_CREB1KD_1_S4_new_
+
+STAR --runThreadN 6 --runMode alignReads --genomeDir /N/slate/xuexiao/Genome/GRCh38/STAR_index \
+--readFilesIn /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_CREB1KD_2_S5_R1_trim_paired.fastq /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_CREB1KD_2_S5_R2_trim_paired.fastq \
+--twopassMode Basic \
+--outSAMtype BAM SortedByCoordinate \
+--quantMode GeneCounts \
+--outFilterMultimapNmax 20 \
+--outFilterMismatchNmax 999 \
+--outFilterMismatchNoverReadLmax 0.04 \
+--alignIntronMin 20 \
+--alignIntronMax 1000000 \
+--alignMatesGapMax 1000000 \
+--outFilterType BySJout \
+--alignSJoverhangMin 8 \
+--alignSJDBoverhangMin 1 \
+--outFileNamePrefix OV3_CREB1KD_2_S5_new_
+
+
+
+STAR --runThreadN 6 --runMode alignReads --genomeDir /N/slate/xuexiao/Genome/GRCh38/STAR_index \
+--readFilesIn /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_CREB1KD_3_S6_R1_trim_paired.fastq /N/slate/xuexiao/cJun_CREB1_ChIP/Clean/OV3_CREB1KD_3_S6_R2_trim_paired.fastq \
+--twopassMode Basic \
+--outSAMtype BAM SortedByCoordinate \
+--quantMode GeneCounts \
+--outFilterMultimapNmax 20 \
+--outFilterMismatchNmax 999 \
+--outFilterMismatchNoverReadLmax 0.04 \
+--alignIntronMin 20 \
+--alignIntronMax 1000000 \
+--alignMatesGapMax 1000000 \
+--outFilterType BySJout \
+--alignSJoverhangMin 8 \
+--alignSJDBoverhangMin 1 \
+--outFileNamePrefix OV3_CREB1KD_3_S6_new_
+
+source ~/.bashrc
+
+samtools index OV3_scr_3_S3_new_Aligned.sortedByCoord.out.bam OV3_scr_3_S3_new_Aligned.sortedByCoord.out.bai
+samtools index OV3_scr_2_S2_new_Aligned.sortedByCoord.out.bam OV3_scr_2_S2_new_Aligned.sortedByCoord.out.bai
+samtools index OV3_scr_1_S1_new_Aligned.sortedByCoord.out.bam OV3_scr_1_S1_new_Aligned.sortedByCoord.out.bai
+samtools index OV3_CREB1KD_1_S4_new_Aligned.sortedByCoord.out.bam OV3_CREB1KD_1_S4_new_Aligned.sortedByCoord.out.bai
+samtools index OV3_CREB1KD_2_S5_new_Aligned.sortedByCoord.out.bam OV3_CREB1KD_2_S5_new_Aligned.sortedByCoord.out.bai
+samtools index OV3_CREB1KD_3_S6_new_Aligned.sortedByCoord.out.bam OV3_CREB1KD_3_S6_new_Aligned.sortedByCoord.out.bai
+
+
+################################ Check which direction is sequenced ###########################################
+grep -v "N_" /N/slate/xuexiao/cJun_CREB1_ChIP/Align/OV3_CREB1KD_3_S6_new_ReadsPerGene.out.tab | awk '{unst+=$2;forw+=$3;rev+=$4}END{print unst,forw,rev}'
+
+cd /N/slate/xuexiao/cJun_CREB1_ChIP/Align
+# retrieve the 4th column of each "ReadsPerGene.out.tab" file + the first column that contains the gene IDs
+paste OV3_*ReadsPerGene.out.tab | grep -v "_" | awk '{printf "%s\t", $1}{for (i=4;i<=NF;i+=4) printf "%s\t", $i; printf "\n" }' > tmp
+
+# add header: "gene_name" + the name of each of the counts file
+sed -e "1igene_name\t$(ls OV3_*ReadsPerGene.out.tab | tr '\n' '\t' | sed 's/ReadsPerGene.out.tab//g')" tmp | cut -f1-7 > /N/slate/xuexiao/cJun_CREB1_ChIP/RNA_reads/raw_counts_OV3_CREB1KD.txt
+
+# another way can be the following one
+ls *.tab | awk 'BEGIN{ORS="";print "gene name\t"}{print $0"\t"}END{print "\n"}'| sed 's/ReadsPerGene.out.tab//g' > ../deseq2/raw_counts_A549_matrix.txt; cat tmp >> ../deseq2/raw_counts_A549_matrix.txt
+
+# remove temporary file
+rm tmp
+
+source deactivate
+
+
+
+
