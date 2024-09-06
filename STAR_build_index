@@ -1,21 +1,3 @@
-#!/bin/bash
-#SBATCH -J STAR_index
-#SBATCH -p general
-#SBATCH -e STAR_index_%j.err
-#SBATCH --mail-type=ALL
-#SBATCH --mail-user=xuexiao@iu.edu
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --mem=200gb
-#SBATCH --time=1:00:00
-
-export PATH="/N/slate/xuexiao/velocyto/velocyto/bin:$PATH"
-
-module unload python
-module load python
-export LC_ALL=en_US.utf-8
-export LANG=en_US.utf-8
-source activate velocyto
 
 STAR --runThreadN 6 --runMode genomeGenerate --genomeDir /N/slate/xuexiao/Genome/GRCh38/rRNA_index \
 --genomeFastaFiles /N/slate/xuexiao/Genome/GRCh38/Human_rRNA_repeats.fasta \
